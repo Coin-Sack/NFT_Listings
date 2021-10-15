@@ -33,7 +33,7 @@ contract CS721Listings is IERC721Receiver {
         require(_listingPrices[token][tokenId] != 0, "listing does not exist");
 
         (uint256 reserve0, uint256 reserve1, ) = CoinSackPancakePair.getReserves();
-        return (uint256(PancakeRouter.getAmountIn(_listingPrices[token][tokenId], reserve1, reserve0))*115/100);
+        return (uint256(PancakeRouter.getAmountIn(_listingPrices[token][tokenId]*115/100, reserve1, reserve0)));
     }
 
     function getListingSeller(address token, uint256 tokenId) public view returns (address) {
